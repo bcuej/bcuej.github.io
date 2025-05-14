@@ -190,3 +190,5 @@ Unfortunately, 出现了下述报错
 
 删掉之后，我们再试一次。
 
+又出现了新的报错。
+![alt text](Github-Action-deployment/error3.png)
