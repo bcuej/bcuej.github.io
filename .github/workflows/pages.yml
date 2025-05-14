@@ -13,6 +13,8 @@ jobs:
     steps:
     - name: Checkout source
       uses: actions/checkout@v3
+      with: 
+        submodules: true
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
@@ -30,6 +32,7 @@ jobs:
         npm install
         hexo clean
         hexo generate
+        
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
