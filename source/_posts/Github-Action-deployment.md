@@ -160,11 +160,28 @@ git push origin main
 ```
 可以通过 git branch 查看仓库分支，绿色字体的为目前所在分支。git push origin xxbranch 能精准推送到你需求的分支。
 
-{ % note % }
-为什么是 origin ？
+{ % note 为什么是 origin ？% }
 git clone https://github.com/username/repo.git
 执行上述命令过后 GitHub 会把上述仓库默认命名为 origin
 { % endnote % }
 
  
 # 让我们试一试
+Unfortunately, 出现了下述报错
+
+![alt text](Github-Action-deployment/error.png)
+
+报错显示出现了一个未知的块标签：unknown block tag: note
+
+最简单的方法就是把{ % note % }{ % endnote % }标签删掉，但是就会失去很多博客的可玩性。
+
+我们选择安装依赖 <code>hexo-tag-note</code>
+
+在 package.json 中的 dependencies 里添加该依赖
+```json
+"dependencies": {
+  "hexo-tag-note": "^1.0.0",
+}
+```
+
+让我们再试一次
