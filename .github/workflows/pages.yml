@@ -1,8 +1,8 @@
-name: Deployment
+name: Deploy Hexo to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main]  # 监听主分支（源代码分支）
 
 jobs:
   hexo-deployment:
@@ -13,28 +13,25 @@ jobs:
     steps:
     - name: Checkout source
       uses: actions/checkout@v3
-      with:
-        submodules: false
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18'  # 使用 Node.js 18 LTS 版本
+        node-version: '18'
 
     - name: Install pandoc
       run: |
         sudo apt-get update
-        sudo apt-get install -y pandoc  # 安装 pandoc
+        sudo apt-get install -y pandoc
 
     - name: Install dependencies & Generate static files
       run: |
-        node -v
         npm i -g hexo-cli
         npm install
         hexo clean
         hexo generate
 
-    - name: Deploy to Github Pages
+    - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.DEPLOY_TOKEN }}
