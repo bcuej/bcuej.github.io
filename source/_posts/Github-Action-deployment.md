@@ -165,7 +165,6 @@ git clone https://github.com/username/repo.git
 执行上述命令过后 GitHub 会把上述仓库默认命名为 origin
 
 
- 
 # 让我们试一试
 Unfortunately, 出现了下述报错
 
@@ -173,7 +172,7 @@ Unfortunately, 出现了下述报错
 
 报错显示出现了一个未知的块标签：unknown block tag: note
 
-最简单的方法就是把{ % note % }{ % endnote % }标签删掉，但是就会失去很多博客的可玩性。
+最简单的方法就是把该标签删掉，但是就会失去很多博客的可玩性。
 
 我们选择安装依赖 <code>hexo-tag-note</code>
 
@@ -188,5 +187,5 @@ Unfortunately, 出现了下述报错
 
 好的再次失败。因为原生主题可能不支持这个语法或者是因为GitHub提供的action中并不包含这个插件，所以我们还是选择舍弃一些趣味性吧。
 
-删掉 {%%} 语句后，我们再试一次。
+删掉之后，我们再试一次。
 
