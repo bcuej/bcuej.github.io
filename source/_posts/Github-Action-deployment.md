@@ -160,10 +160,10 @@ git push origin main
 ```
 可以通过 git branch 查看仓库分支，绿色字体的为目前所在分支。git push origin xxbranch 能精准推送到你需求的分支。
 
-{ % note 为什么是 origin ？% }
+📓 note 为什么是 origin ？
 git clone https://github.com/username/repo.git
 执行上述命令过后 GitHub 会把上述仓库默认命名为 origin
-{ % endnote % }
+
 
  
 # 让我们试一试
@@ -184,4 +184,9 @@ Unfortunately, 出现了下述报错
 }
 ```
 
-让我们再试一次
+让我们再试一次。
+
+好的再次失败。因为原生主题可能不支持这个语法或者是因为GitHub提供的action中并不包含这个插件，所以我们还是选择舍弃一些趣味性吧。
+
+删掉 {%%} 语句后，我们再试一次。
+
