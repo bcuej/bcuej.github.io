@@ -13,10 +13,6 @@ jobs:
     steps:
     - name: Checkout source with submodules
       uses: actions/checkout@v3
-  
-      
-    - name: Sync submodules
-      run: git submodule update --init --recursive
 
 
     - name: Setup Node.js

@@ -24,7 +24,7 @@ deploy:
   branch: gh-pages
 ```
 因为我的博客静态文件存放在 gh-pages 分支，所以这里设置为 gh-pages，同时GitHub page也要保持一样的设置。
-![alt text](Github-Action-deployment/GitHubpage.png)
+![alt text](GitHubpage.png)
 
 # 配置密钥
 
