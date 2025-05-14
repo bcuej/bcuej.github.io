@@ -3,7 +3,7 @@
   registry: 'https://registry.npmmirror.com',
   pkgs: [
     {
-      name: 'hexo-tag-notes',
+      name: 'hexo-tag-note',
       version: 'latest',
       type: 'tag',
       alias: undefined,
@@ -15,7 +15,7 @@
   cacheDir: 'C:\\Users\\Lenovo\\.npminstall_tarball',
   env: {
     npm_config_registry: 'https://registry.npmmirror.com',
-    npm_config_argv: '{"remain":[],"cooked":["--fix-bug-versions","--china","--userconfig=C:\\\\Users\\\\Lenovo\\\\.cnpmrc","--disturl=https://cdn.npmmirror.com/binaries/node","--registry=https://registry.npmmirror.com","hexo-tag-notes","--save"],"original":["--fix-bug-versions","--china","--userconfig=C:\\\\Users\\\\Lenovo\\\\.cnpmrc","--disturl=https://cdn.npmmirror.com/binaries/node","--registry=https://registry.npmmirror.com","hexo-tag-notes","--save"]}',
+    npm_config_argv: '{"remain":[],"cooked":["--fix-bug-versions","--china","--userconfig=C:\\\\Users\\\\Lenovo\\\\.cnpmrc","--disturl=https://cdn.npmmirror.com/binaries/node","--registry=https://registry.npmmirror.com","hexo-tag-note","--save"],"original":["--fix-bug-versions","--china","--userconfig=C:\\\\Users\\\\Lenovo\\\\.cnpmrc","--disturl=https://cdn.npmmirror.com/binaries/node","--registry=https://registry.npmmirror.com","hexo-tag-note","--save"]}',
     npm_config_user_agent: 'npminstall/7.12.0 npm/? node/v22.14.0 win32 x64',
     npm_config_cache: 'C:\\Users\\Lenovo\\.npminstall_tarball',
     NODE: 'F:\\nodejs\\node.exe',
