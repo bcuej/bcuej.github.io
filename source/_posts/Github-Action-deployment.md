@@ -169,7 +169,7 @@ git clone https://github.com/username/repo.git
 # 让我们试一试
 Unfortunately, 出现了下述报错
 
-![alt text](Github-Action-deployment/error.png)
+![alt text](error.png)
 
 报错显示出现了一个未知的块标签：unknown block tag: note
 
@@ -191,4 +191,7 @@ Unfortunately, 出现了下述报错
 删掉之后，我们再试一次。
 
 又出现了新的报错。
-![alt text](Github-Action-deployment/error3.png)
+![alt text](error3.png)
+
+发现是 原本配置的公钥和私钥失效了。再重复之前的配置步骤即可。
+![alt text](success.png)
