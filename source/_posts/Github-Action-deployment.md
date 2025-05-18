@@ -195,3 +195,94 @@ Unfortunately, 出现了下述报错
 
 发现是 原本配置的公钥和私钥失效了。再重复之前的配置步骤即可。
 ![alt text](success.png)
+
+# 部署成功但页面空白
+
+## 问题
+deployment 成功，但是打开博客时页面一片空白。
+
+![alt text](blankpage.png)
+
+发现 action 中有这样一段 warning：
+![alt text](warn.png)
+
+没有layout.html文件生成，导致页面不能正常渲染。
+
+在根目录下的<code>_config.yml</code>中切换到默认的主题：<code>landscape</code>
+
+```yml
+theme: landscape
+```
+
+再次打开博客显示：
+![alt text](landscape.png)
+
+应该是主题文件夹路径的问题。
+
+把 .gitmodules 删除了也没用。(因为之前有 .gitmodules 相关的warning, 大意是指找不到 themes/redefine 的子模块......对子模块的理解有差错。)
+
+## 解决方法
+继续debug，发现gitmodules还是有残留，并且 themes/redefine 文件并没有成功推送到仓库中，所以在触发action的时候出现了warning。
+
+![alt text](gitmodule.png)
+
+![alt text](redefine.png)
+
+![alt text](gitmodulewarn.png)
+
+让我们尝试一下从这个问题入手进行解决。
+
+- 通过命令行移除子模块的设置。手动删除 .gitmodule 文件并不彻底，需要由命令行进行解绑。
+
+```bash
+git rm --cached themes/redefine
+rm -rf .git/modules/themes/redefine
+```
+
+并删除 .gitmodule 文件，包括 themes/redefine 目录下的。
+
+```bash
+rm -f themes/redefine/.gitmodules
+```
+
+然后将 themes/redefine 文件夹添加到暂存区，提交到仓库。
+
+```bash
+git add themes/redefine
+git commit -m "push themes/redefine to the main branch"
+git push origin main
+```
+
+Then, problem solved! 😁😁😁
+
+用 Github Action 就能正常完成hexo博客自动部署了，顺利白嫖 GitHub 服务器✌✌
+
+## 关于 hexo 的理解
+
+### 关于子模块
+
+- hexo的主题有些是通过子模块引入的。子模块可以用引用GitHub仓库实现，并且要在 <code>.gitmodule</code>中用下述语法引用。
+
+```git
+[submodule ".deploy_git"] #名称
+    path = .deploy_git #路径
+    url = https://github.com/repo.io.git #仓库url
+```
+
+### 关于主题
+
+- 博客主题是直接下载到本地的，就可以不用添加子模块。
+
+我在搭建博客的时候就是这种情况。
+
+### 关于文件夹
+
+- public：它存放了博客的公开资源。hexo cl时会清除这个文件夹下的内容，通过hexo g生成。
+- .depoly_git：是本地静态文件到github仓库的中转站。它会将public中的文件复制一份，并通过 hexo d推送到GitHub仓库中。通过下述代码设置推送的目标仓库和分支。
+
+```yml
+deploy:
+  type: git
+  repo: git@github.com:bcuej/bcuej.github.io.git
+  branch: gh-pages
+```
