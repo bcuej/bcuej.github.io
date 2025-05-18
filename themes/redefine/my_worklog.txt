@@ -1,0 +1,54 @@
+]633;D;0]633;P;Cwd=F:/HEXO/pomni[?2004h]633;A]0;MINGW64:/f/HEXO/pomni
+[32mLenovo@LAPTOP-26F94KQA [35mMINGW64 [33m/f/HEXO/pomni[36m (main)[0m
+$ ]633;B[7mStart-Transcript -Path my_worklog.txt[27m[C[CStart-Transcript -Path my_worklog.txt
+[?2004l]633;E;Start-Transcript -Path my_worklog.txt;541a30e2-1cfa-4efd-906f-06051e776150]633;Cbash: Start-Transcript: command not found
+]633;D;127]633;P;Cwd=F:/HEXO/pomni[?2004h]633;A]0;MINGW64:/f/HEXO/pomni
+[32mLenovo@LAPTOP-26F94KQA [35mMINGW64 [33m/f/HEXO/pomni[36m (main)[0m
+$ ]633;B^[[200~# 开始记录（追加到日志文件）
+[?2004l]633;E;\x1b[200~# 开始记录（追加到日志文件）;541a30e2-1cfa-4efd-906f-06051e776150]633;Cbash: $'\E[200~#': command not found
+]633;D;127]633;P;Cwd=F:/HEXO/pomni[?2004h]633;A]0;MINGW64:/f/HEXO/pomni
+[32mLenovo@LAPTOP-26F94KQA [35mMINGW64 [33m/f/HEXO/pomni[36m (main)[0m
+$ ]633;Bexec > >(tee -a my_worklog.txt) 2>&1[?5h[?5l~[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[?5h[?5l[?5h[?5l[?5h[?5l[?5h[?5l[7mexec > >(tee -a my_worklog.txt) 2>&1[27m[C[Cexec > >(tee -a my_worklog.txt) 2>&1
+[?2004l]633;E;exec > >(tee -a my_worklog.txt) 2>&1;541a30e2-1cfa-4efd-906f-06051e776150]633;C]633;D;0]633;D;0]633;P;Cwd=F:/HEXO/pomni]633;P;Cwd=F:/HEXO/pomni[?2004h]633;A]0;MINGW64:/f/HEXO/pomni
+[32mLenovo@LAPTOP-26F94KQA [35mMINGW64 [33m/f/HEXO/pomni[36m (main)[0m
+$ ]633;B[?2004h]633;A]0;MINGW64:/f/HEXO/pomni
+[32mLenovo@LAPTOP-26F94KQA [35mMINGW64 [33m/f/HEXO/pomni[36m (main)[0m
+$ ]633;Bhhhhhhhh
+[?2004l
+[?2004l]633;E;hhhh;541a30e2-1cfa-4efd-906f-06051e776150]633;C]633;E;hhhh;541a30e2-1cfa-4efd-906f-06051e776150]633;Cbash: hhhh: command not found
+bash: hhhh: command not found
+]633;D;127]633;D;127]633;P;Cwd=F:/HEXO/pomni]633;P;Cwd=F:/HEXO/pomni[?2004h]633;A]0;MINGW64:/f/HEXO/pomni
+[32mLenovo@LAPTOP-26F94KQA [35mMINGW64 [33m/f/HEXO/pomni[36m (main)[0m
+$ ]633;Bh[?2004h]633;A]0;MINGW64:/f/HEXO/pomni
+[32mLenovo@LAPTOP-26F94KQA [35mMINGW64 [33m/f/HEXO/pomni[36m (main)[0m
+$ ]633;Bhhhhhhh
+[?2004l
+[?2004l]633;E;hhhh;541a30e2-1cfa-4efd-906f-06051e776150]633;C]633;E;hhhh;541a30e2-1cfa-4efd-906f-06051e776150]633;Cbash: hhhh: command not found
+bash: hhhh: command not found
+]633;D;127]633;D;127]633;P;Cwd=F:/HEXO/pomni]633;P;Cwd=F:/HEXO/pomni[?2004h]633;A]0;MINGW64:/f/HEXO/pomni
+[32mLenovo@LAPTOP-26F94KQA [35mMINGW64 [33m/f/HEXO/pomni[36m (main)[0m
+$ ]633;Bh[?2004h]633;A]0;MINGW64:/f/HEXO/pomni
+[32mLenovo@LAPTOP-26F94KQA [35mMINGW64 [33m/f/HEXO/pomni[36m (main)[0m
+$ ]633;Bhhhhh
+[?2004l
+[?2004l]633;E;hhh;541a30e2-1cfa-4efd-906f-06051e776150]633;C]633;E;hhh;541a30e2-1cfa-4efd-906f-06051e776150]633;Cbash: hhh: command not found
+bash: hhh: command not found
+]633;D;127]633;D;127]633;P;Cwd=F:/HEXO/pomni]633;P;Cwd=F:/HEXO/pomni[?2004h]633;A]0;MINGW64:/f/HEXO/pomni
+[32mLenovo@LAPTOP-26F94KQA [35mMINGW64 [33m/f/HEXO/pomni[36m (main)[0m
+$ ]633;B
+[?2004l[?2004h]633;A]0;MINGW64:/f/HEXO/pomni
+[32mLenovo@LAPTOP-26F94KQA [35mMINGW64 [33m/f/HEXO/pomni[36m (main)[0m
+$ ]633;B
+[?2004l]633;E;;541a30e2-1cfa-4efd-906f-06051e776150]633;C]633;D]633;E;;541a30e2-1cfa-4efd-906f-06051e776150]633;C]633;D]633;P;Cwd=F:/HEXO/pomni]633;P;Cwd=F:/HEXO/pomni[?2004h]633;A]0;MINGW64:/f/HEXO/pomni
+[32mLenovo@LAPTOP-26F94KQA [35mMINGW64 [33m/f/HEXO/pomni[36m (main)[0m
+$ ]633;Bhh[?2004h]633;A]0;MINGW64:/f/HEXO/pomni
+[32mLenovo@LAPTOP-26F94KQA [35mMINGW64 [33m/f/HEXO/pomni[36m (main)[0m
+$ ]633;Bhhhhhhhhhhhhhh
+[?2004l
+[?2004l]633;E;hhhhhhhh;541a30e2-1cfa-4efd-906f-06051e776150]633;C]633;E;hhhhhhhh;541a30e2-1cfa-4efd-906f-06051e776150]633;Cbash: hhhhhhhh: command not found
+bash: hhhhhhhh: command not found
+]633;D;127]633;D;127]633;P;Cwd=F:/HEXO/pomni]633;P;Cwd=F:/HEXO/pomni[?2004h]633;A]0;MINGW64:/f/HEXO/pomni
+[32mLenovo@LAPTOP-26F94KQA [35mMINGW64 [33m/f/HEXO/pomni[36m (main)[0m
+$ ]633;B[?2004h]633;A]0;MINGW64:/f/HEXO/pomni
+[32mLenovo@LAPTOP-26F94KQA [35mMINGW64 [33m/f/HEXO/pomni[36m (main)[0m
+$ ]633;B
