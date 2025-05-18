@@ -30,7 +30,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://pomni.fun/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-05-14T02:12:29.000Z">
-<meta property="article:modified_time" content="2025-05-18T09:21:23.512Z">
+<meta property="article:modified_time" content="2025-05-18T11:26:59.116Z">
 <meta property="article:author" content="Pomni">
 <meta property="article:tag" content="tech">
 <meta name="twitter:card" content="summary">
@@ -361,7 +361,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">3</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">2</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -369,7 +369,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -420,8 +420,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-05-18 17:21:23</span>
-            <span class="mobile">2025-05-18 17:21:23</span>
+            <span class="desktop">2025-05-18 19:26:59</span>
+            <span class="mobile">2025-05-18 19:26:59</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -443,12 +443,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.3k Words</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.8k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>5 Mins</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>7 Mins</span>
         </span>
     
     
@@ -554,7 +554,78 @@
                      data-src="/2025/05/14/Github-Action-deployment/success.png"
                       alt="alt text"
                 ></p>
+<h1 id="部署成功但页面空白"><a href="#部署成功但页面空白" class="headerlink" title="部署成功但页面空白"></a>部署成功但页面空白</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>deployment 成功，但是打开博客时页面一片空白。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/05/14/Github-Action-deployment/blankpage.png"
+                      alt="alt text"
+                ></p>
+<p>发现 action 中有这样一段 warning：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/05/14/Github-Action-deployment/warn.png"
+                      alt="alt text"
+                ></p>
+<p>没有layout.html文件生成，导致页面不能正常渲染。</p>
+<p>在根目录下的<code>_config.yml</code>中切换到默认的主题：<code>landscape</code></p>
+<div class="code-container" data-rel="Yml"><figure class="iseeu highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">landscape</span></span><br></pre></td></tr></table></figure></div>
 
+<p>再次打开博客显示：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/05/14/Github-Action-deployment/landscape.png"
+                      alt="alt text"
+                ></p>
+<p>应该是主题文件夹路径的问题。</p>
+<p>把 .gitmodules 删除了也没用。(因为之前有 .gitmodules 相关的warning, 大意是指找不到 themes&#x2F;redefine 的子模块……对子模块的理解有差错。)</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>继续debug，发现gitmodules还是有残留，并且 themes&#x2F;redefine 文件并没有成功推送到仓库中，所以在触发action的时候出现了warning。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/05/14/Github-Action-deployment/gitmodule.png"
+                      alt="alt text"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/05/14/Github-Action-deployment/redefine.png"
+                      alt="alt text"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/05/14/Github-Action-deployment/gitmodulewarn.png"
+                      alt="alt text"
+                ></p>
+<p>让我们尝试一下从这个问题入手进行解决。</p>
+<ul>
+<li>通过命令行移除子模块的设置。手动删除 .gitmodule 文件并不彻底，需要由命令行进行解绑。</li>
+</ul>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">rm</span> --cached themes/redefine</span><br><span class="line"><span class="built_in">rm</span> -rf .git/modules/themes/redefine</span><br></pre></td></tr></table></figure></div>
+
+<p>并删除 .gitmodule 文件，包括 themes&#x2F;redefine 目录下的。</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> -f themes/redefine/.gitmodules</span><br></pre></td></tr></table></figure></div>
+
+<p>然后将 themes&#x2F;redefine 文件夹添加到暂存区，提交到仓库。</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add themes/redefine</span><br><span class="line">git commit -m <span class="string">&quot;push themes/redefine to the main branch&quot;</span></span><br><span class="line">git push origin main</span><br></pre></td></tr></table></figure></div>
+
+<p>Then, problem solved! 😁😁😁</p>
+<p>用 Github Action 就能正常完成hexo博客自动部署了，顺利白嫖 GitHub 服务器✌✌</p>
+<h2 id="关于-hexo-的理解"><a href="#关于-hexo-的理解" class="headerlink" title="关于 hexo 的理解"></a>关于 hexo 的理解</h2><h3 id="关于子模块"><a href="#关于子模块" class="headerlink" title="关于子模块"></a>关于子模块</h3><ul>
+<li>hexo的主题有些是通过子模块引入的。子模块可以用引用GitHub仓库实现，并且要在 <code>.gitmodule</code>中用下述语法引用。</li>
+</ul>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[submodule &quot;.deploy_git&quot;] #名称</span><br><span class="line">    path = .deploy_git #路径</span><br><span class="line">    url = https://github.com/repo.io.git #仓库url</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="关于主题"><a href="#关于主题" class="headerlink" title="关于主题"></a>关于主题</h3><ul>
+<li>博客主题是直接下载到本地的，就可以不用添加子模块。</li>
+</ul>
+<p>我在搭建博客的时候就是这种情况。</p>
+<h3 id="关于文件夹"><a href="#关于文件夹" class="headerlink" title="关于文件夹"></a>关于文件夹</h3><ul>
+<li>public：它存放了博客的公开资源。hexo cl时会清除这个文件夹下的内容，通过hexo g生成。</li>
+<li>.depoly_git：是本地静态文件到github仓库的中转站。它会将public中的文件复制一份，并通过 hexo d推送到GitHub仓库中。通过下述代码设置推送的目标仓库和分支。</li>
+</ul>
+<div class="code-container" data-rel="Yml"><figure class="iseeu highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:bcuej/bcuej.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh-pages</span></span><br></pre></td></tr></table></figure></div>
 		</div>
 
 		
@@ -568,7 +639,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-05-18 17:21:23
+                    :</strong> 2025-05-18 19:26:59
             </li>
         
         <li>
@@ -604,18 +675,6 @@
 
 		
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
-			
-			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2025/05/18/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8F%8D%E6%80%9D/">
-					<span class="left arrow-icon flex justify-center items-center">
-						<i class="fa-solid fa-chevron-left"></i>
-					</span>
-					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">博客搭建的一些反思</span>
-						<span class="post-nav-item">Prev posts</span>
-					</span>
-				</a>
-			</div>
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
@@ -685,7 +744,7 @@
 	<div class="post-toc">
 		<div class="toc-title">On this page</div>
 		<div class="page-title">Github Action deployment</div>
-		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GitHub-pages-%E4%B8%8E%E6%9C%AC%E5%9C%B0%E8%AE%BE%E7%BD%AE"><span class="nav-text">GitHub pages 与本地设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%AF%86%E9%92%A5"><span class="nav-text">配置密钥</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E5%85%AC%E9%92%A5%E7%A7%81%E9%92%A5"><span class="nav-text">生成公钥私钥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%88%B0GitHub"><span class="nav-text">配置到GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%81%E9%92%A5"><span class="nav-text">私钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AC%E9%92%A5"><span class="nav-text">公钥</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Workflow"><span class="nav-text">Workflow</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%9A%84workflow-%E9%85%8D%E7%BD%AE"><span class="nav-text">完整的workflow 配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A6%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2"><span class="nav-text">触发自动化部署</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A9%E6%88%91%E4%BB%AC%E8%AF%95%E4%B8%80%E8%AF%95"><span class="nav-text">让我们试一试</span></a></li></ol>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GitHub-pages-%E4%B8%8E%E6%9C%AC%E5%9C%B0%E8%AE%BE%E7%BD%AE"><span class="nav-text">GitHub pages 与本地设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%AF%86%E9%92%A5"><span class="nav-text">配置密钥</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E5%85%AC%E9%92%A5%E7%A7%81%E9%92%A5"><span class="nav-text">生成公钥私钥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%88%B0GitHub"><span class="nav-text">配置到GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%81%E9%92%A5"><span class="nav-text">私钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AC%E9%92%A5"><span class="nav-text">公钥</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Workflow"><span class="nav-text">Workflow</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%9A%84workflow-%E9%85%8D%E7%BD%AE"><span class="nav-text">完整的workflow 配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A6%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2"><span class="nav-text">触发自动化部署</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A9%E6%88%91%E4%BB%AC%E8%AF%95%E4%B8%80%E8%AF%95"><span class="nav-text">让我们试一试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E6%88%90%E5%8A%9F%E4%BD%86%E9%A1%B5%E9%9D%A2%E7%A9%BA%E7%99%BD"><span class="nav-text">部署成功但页面空白</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-text">解决方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E-hexo-%E7%9A%84%E7%90%86%E8%A7%A3"><span class="nav-text">关于 hexo 的理解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%AD%90%E6%A8%A1%E5%9D%97"><span class="nav-text">关于子模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E4%B8%BB%E9%A2%98"><span class="nav-text">关于主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-text">关于文件夹</span></a></li></ol></li></ol></li></ol>
 
 	</div>
 </div>
@@ -714,11 +773,11 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        5 posts in total
+                        4 posts in total
                     </span>
                     
                         <span>
-                            8.9k words in total
+                            9.1k words in total
                         </span>
                     
                 </p>
