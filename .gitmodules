@@ -2,6 +2,3 @@
     path = .deploy_git
     url = https://github.com/bcuej/bcuej.github.io.git
 
-[submodule "themes/redefine"]
-    path = themes/redefine
-    url = https://github.com/bcuej/bcuej.github.io.git
