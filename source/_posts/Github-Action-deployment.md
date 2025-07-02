@@ -286,3 +286,9 @@ deploy:
   repo: git@github.com:bcuej/bcuej.github.io.git
   branch: gh-pages
 ```
+
+# 胡言乱语
+
+“船到桥头自然直。”
+
+船不会倏尔抵达桥头，但是船夫可以凭借好的方向感和扎实的划船功底以可观的速度保持平稳地划桨前行。
